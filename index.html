@@ -99,24 +99,45 @@
         .info-item .label { font-size: 12px; color: #999; margin-bottom: 4px; }
         .info-item .value { font-size: 16px; font-weight: 600; color: #333; }
 
+        /* 优化后的交互风格标签样式 */
         .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
             margin-top: 16px;
         }
         .tag {
             background: #f0ede8;
             color: #666;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 24px;
             font-size: 14px;
             border: 1px solid #e5e1db;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
         }
+        /* 悬浮微调动效 */
+        .tag:hover {
+            background: #e5e1db;
+            color: #2c2c2c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        /* 激活选中的状态 */
         .tag.active {
-            background: #2c2c2c;
+            background: #d4a574;
             color: #fff;
-            border-color: #2c2c2c;
+            border-color: #d4a574;
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(212,165,116,0.3);
+            font-weight: 600;
+        }
+        /* 点击时的Q弹缩水反馈 */
+        .tag:active {
+            transform: scale(0.95);
         }
 
         .room-list { margin-top: 16px; }
@@ -302,6 +323,7 @@
             padding: 20px;
             border-radius: 0 8px 8px 0;
             margin: 20px 0;
+            transition: all 0.3s ease; /* 让切换文本时的淡入过渡更平滑 */
         }
         .note-box .note-title { font-weight: 600; color: #92400e; margin-bottom: 8px; }
         .note-box .note-text { color: #78350f; font-size: 14px; }
@@ -449,23 +471,21 @@
             装修风格定位
         </div>
         <div class="card">
-            <h3>首选风格</h3>
+            <h3>首选风格（点击不同风格查看详情说明）</h3>
             <div class="tags">
-                <span class="tag active">现代简约</span>
-                <span class="tag">北欧风</span>
-                <span class="tag">日式原木</span>
-                <span class="tag">轻奢</span>
-                <span class="tag">奶油风</span>
-                <span class="tag">侘寂风</span>
-                <span class="tag">中古风</span>
-                <span class="tag">新中式</span>
+                <span class="tag active" onclick="switchStyle('modern', this)">现代简约</span>
+                <span class="tag" onclick="switchStyle('nordic', this)">北欧风</span>
+                <span class="tag" onclick="switchStyle('muji', this)">日式原木</span>
+                <span class="tag" onclick="switchStyle('luxury', this)">轻奢</span>
+                <span class="tag" onclick="switchStyle('cream', this)">奶油风</span>
+                <span class="tag" onclick="switchStyle('wabisabi', this)">侘寂风</span>
+                <span class="tag" onclick="switchStyle('vintage', this)">中古风</span>
+                <span class="tag" onclick="switchStyle('chinese', this)">新中式</span>
             </div>
             <div class="note-box" style="margin-top: 20px;">
-                <div class="note-title">💡 风格描述（示例）</div>
-                <div class="note-text">
-                    整体偏向<strong>现代简约+日式原木</strong>的混搭风格。希望以白色、米色、浅木色为主色调，
-                    营造温暖明亮、简洁大气的居住氛围。不喜欢过于复杂的装饰线条，偏好干净利落的硬装，
-                    通过软装和灯光来提升质感。特别注重收纳系统的隐藏式设计，希望家里看起来整洁有序。
+                <div class="note-title" id="style-title">💡 现代简约风格描述</div>
+                <div class="note-text" id="style-text">
+                    整体偏向<strong>现代简约</strong>。希望以白色、米色、浅木色或高级灰为主色调，营造温馨明亮、简洁大气的居住氛围。不喜欢过于复杂的装饰线条，偏好干净利落的硬装，通过隐藏式软装、线型无主灯光来提升质感。特别注重隐藏式收纳系统的柜体规划，希望家里看起来极简整洁且富有高科技现代感。
                 </div>
             </div>
         </div>
@@ -785,7 +805,7 @@
             <h3>必须满足的需求（示例）</h3>
             <ul style="margin-left: 20px; color: #555; line-height: 2.2;">
                 <li>全屋智能家居系统（智能开关、窗帘、门锁预留）</li>
-                <li>中央空调 + 新风系统（已确定 brand 型号）</li>
+                <li>中央空调 + 新风系统（已确定品牌型号）</li>
                 <li>地暖（仅客厅、卧室区域）</li>
                 <li>网络：每个房间预留6类网线接口，考虑全屋 AC+AP 覆盖</li>
             </ul>
@@ -798,6 +818,58 @@
     </div>
 
     <script>
+        // 核心功能：风格库数据生成与动态切换交互
+        const styleData = {
+            modern: {
+                title: "💡 现代简约风格描述",
+                text: "整体偏向<strong>现代简约</strong>。希望以白色、米色、浅木色或高级灰为主色调，营造温馨明亮、简洁大气的居住氛围。不喜欢过于复杂的装饰线条，偏好干净利落的硬装，通过隐藏式软装、线型无主灯光来提升质感。特别注重隐藏式收纳系统的柜体规划，希望家里看起来极简整洁且富有高科技现代感。"
+            },
+            nordic: {
+                title: "💡 北欧风格描述",
+                text: "强调<strong>自然、舒适与极佳的采光</strong>。基调以纯白或浅冷灰为主，大量搭配富有蓬松柔和感的布艺织物、亮色抱枕以及浅色几何地毯。家具选择上偏爱细腿木质结构，尽量保留木材天然纹理。整体空间不显厚重，追求轻松惬意、充满阳光和生机的‘北欧慵懒感’。"
+            },
+            muji: {
+                title: "💡 日式原木风格描述",
+                text: "核心是以<strong>原木色与留白</strong>来传递平静淡雅的生活哲学。全屋硬装极度精简，广泛采用白橡木或原木质感的家具、格栅与无拉手隐形柜。搭配棉麻窗帘、榻榻米软包和暖白、暖黄灯光，极少使用强烈对比色彩，让人一进家门就能感受到大自然的宁静与质朴治愈力。"
+            },
+            luxury: {
+                title: "💡 现代轻奢风格描述",
+                text: "在现代简约的硬装底色上，融入<strong>高品质的精致材质</strong>。通常运用高级大理石、金属黄铜线条线条、天鹅绒软包以及高档玻璃等元素点缀局部。色调偏爱黑白灰搭配深蓝、墨绿或香槟金。注重线条的精致感与材质的反光质感，在低调中不经意流露出轻贵和奢华的精致格调。"
+            },
+            cream: {
+                title: "💡 暖系奶油风格描述",
+                text: "当下非常流行的一种<strong>温馨治愈系风格</strong>。全屋大面积使用奶油色、浅米色和燕麦色，墙面与天花板通常做一体化乳胶漆延伸。空间中会大量出现圆弧形垭口、微水泥、软萌的多巴胺圆润弧度家具（如云朵沙发）。完全舍弃尖锐棱角，辅以温暖绵密的毛绒材质，视觉上像包裹在厚厚奶泡里一样轻柔、解压。"
+            },
+            wabisabi: {
+                title: "💡 侘寂风格描述",
+                text: "推崇<strong>残缺之美与时间的痕迹</strong>。硬装材料多采用艺术涂料、微水泥、稻草漆和粗糙的原石质感。色彩极度克制，以大地色、枯木色、灰色和暗米色为主。家具往往带有古朴的手工感或自然残损痕迹，几乎没有亮面和繁复装饰，旨在表现空灵、静谧、反璞归真的质感和冥想氛围。"
+            },
+            vintage: {
+                title: "💡 复古中古风格描述",
+                text: "充满<strong>20世纪中叶（Mid-Century Modern）的电影质感与复古韵味</strong>。偏爱胡桃木、藤编、长虹玻璃和马赛克砖等带有时代印记的材质。色彩浓烈饱满，常以焦糖色、中古绿、复古黄作为视觉焦点。整体设计兼具几何线条的利落和古典家具的优雅，散发着浓郁的艺术人文气息。"
+            },
+            chinese: {
+                title: "💡 新中式风格描述",
+                text: "将<strong>传统中式美学进行现代化的提炼与简化</strong>。告别了老式中式的沉闷压抑，采用大方利落的当代空间线条，局部嵌入中式山水屏风、中式对称格栅、水墨大理石或禅意盆景。色彩多为高雅的墨黑、红木色搭配大面积留白。既保留了华夏风骨的庄重与东方儒雅之气，又兼顾了现代居住的舒适度和实用性。"
+            }
+        };
+
+        function switchStyle(styleKey, element) {
+            // 1. 移除所有标签的激活状态
+            document.querySelectorAll('.tag').forEach(tag => tag.classList.remove('active'));
+            // 2. 为当前被点击的标签添加激活类
+            element.classList.add('active');
+            
+            // 3. 动态更新对应文本
+            const titleEl = document.getElementById('style-title');
+            const textEl = document.getElementById('style-text');
+            
+            if (styleData[styleKey]) {
+                titleEl.innerHTML = styleData[styleKey].title;
+                textEl.innerHTML = styleData[styleKey].text;
+            }
+        }
+
         // 单张图片上传处理（户型图）
         function handleImageUpload(input, type) {
             if (input.files && input.files[0]) {

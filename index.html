@@ -95,11 +95,11 @@
             background: #faf8f5;
             padding: 16px;
             border-radius: 8px;
+            transition: all 0.3s ease;
         }
         .info-item .label { font-size: 12px; color: #999; margin-bottom: 4px; }
-        .info-item .value { font-size: 16px; font-weight: 600; color: #333; }
+        .info-item .value { font-size: 16px; font-weight: 600; color: #333; transition: color 0.3s ease; }
 
-        /* 优化后的交互风格标签样式 */
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -119,14 +119,12 @@
             position: relative;
             overflow: hidden;
         }
-        /* 悬浮微调动效 */
         .tag:hover {
             background: #e5e1db;
             color: #2c2c2c;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
-        /* 激活选中的状态 */
         .tag.active {
             background: #d4a574;
             color: #fff;
@@ -135,7 +133,6 @@
             box-shadow: 0 4px 12px rgba(212,165,116,0.3);
             font-weight: 600;
         }
-        /* 点击时的Q弹缩水反馈 */
         .tag:active {
             transform: scale(0.95);
         }
@@ -168,7 +165,6 @@
             font-style: italic;
         }
 
-        /* 图片上传区域样式 */
         .img-upload-area {
             position: relative;
             width: 100%;
@@ -211,7 +207,6 @@
         .img-upload-area .img-placeholder .hint { font-size: 14px; color: #999; }
         .img-upload-area .img-placeholder .sub-hint { font-size: 12px; color: #bbb; margin-top: 4px; }
 
-        /* 统一按钮样式 */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -226,48 +221,24 @@
             transition: all 0.25s ease;
             font-family: inherit;
         }
-        .btn-primary {
-            background: #2c2c2c;
-            color: #fff;
-        }
+        .btn-primary { background: #2c2c2c; color: #fff; }
         .btn-primary:hover {
             background: #d4a574;
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(212,165,116,0.3);
         }
-        .btn-outline {
-            background: #fff;
-            color: #666;
-            border: 1px solid #e5e1db;
-        }
+        .btn-outline { background: #fff; color: #666; border: 1px solid #e5e1db; }
         .btn-outline:hover {
             border-color: #d4a574;
             color: #d4a574;
             background: #fff9f3;
         }
-        .btn-danger {
-            background: #fff;
-            color: #c45c5c;
-            border: 1px solid #e5e1db;
-        }
-        .btn-danger:hover {
-            background: #fff0f0;
-            border-color: #c45c5c;
-        }
-        .btn-sm {
-            padding: 6px 14px;
-            font-size: 13px;
-            border-radius: 6px;
-        }
-        .btn-center {
-            margin-top: 16px;
-            display: flex;
-            justify-content: center;
-        }
+        .btn-danger { background: #fff; color: #c45c5c; border: 1px solid #e5e1db; }
+        .btn-danger:hover { background: #fff0f0; border-color: #c45c5c; }
+        .btn-sm { padding: 6px 14px; font-size: 13px; border-radius: 6px; }
+        .btn-center { margin-top: 16px; display: flex; justify-content: center; }
 
-        input[type="file"] {
-            display: none;
-        }
+        input[type="file"] { display: none; }
 
         .gallery {
             display: grid;
@@ -313,9 +284,7 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-        .gallery-item:hover .img-actions {
-            opacity: 1;
-        }
+        .gallery-item:hover .img-actions { opacity: 1; }
 
         .note-box {
             background: #fffbeb;
@@ -323,18 +292,12 @@
             padding: 20px;
             border-radius: 0 8px 8px 0;
             margin: 20px 0;
-            transition: all 0.3s ease; /* 让切换文本时的淡入过渡更平滑 */
+            transition: all 0.3s ease;
         }
         .note-box .note-title { font-weight: 600; color: #92400e; margin-bottom: 8px; }
         .note-box .note-text { color: #78350f; font-size: 14px; }
 
-        .footer {
-            text-align: center;
-            padding: 40px;
-            color: #999;
-            font-size: 13px;
-            margin-top: 40px;
-        }
+        .footer { text-align: center; padding: 40px; color: #999; font-size: 13px; margin-top: 40px; }
 
         .budget-bar {
             height: 8px;
@@ -343,28 +306,11 @@
             margin-top: 12px;
             overflow: hidden;
         }
-        .budget-bar .fill {
-            height: 100%;
-            background: #d4a574;
-            border-radius: 4px;
-        }
+        .budget-bar .fill { height: 100%; background: #d4a574; border-radius: 4px; }
 
-        .area-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 16px;
-            font-size: 14px;
-        }
-        .area-table th, .area-table td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid #f0ede8;
-        }
-        .area-table th {
-            background: #faf8f5;
-            font-weight: 600;
-            color: #666;
-        }
+        .area-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+        .area-table th, .area-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #f0ede8; }
+        .area-table th { background: #faf8f5; font-weight: 600; color: #666; }
         .area-table td { color: #555; }
         .area-table .highlight { color: #d4a574; font-weight: 600; }
 
@@ -385,6 +331,7 @@
             <div class="date">2026年 · 期待中的家</div>
         </div>
 
+        <!-- 1. 房屋基本信息 -->
         <div class="section-title">
             <div class="num">1</div>
             房屋基本信息
@@ -466,6 +413,7 @@
             </ul>
         </div>
 
+        <!-- 2. 装修风格定位 -->
         <div class="section-title">
             <div class="num">2</div>
             装修风格定位
@@ -490,28 +438,30 @@
             </div>
         </div>
 
+        <!-- 联动修改的核心卡片区域 -->
         <div class="card">
-            <h3>色调与材质偏好（示例）</h3>
+            <h3>色调与材质偏好</h3>
             <div class="info-grid">
                 <div class="info-item">
                     <div class="label">主色调</div>
-                    <div class="value">米白、浅灰、原木色</div>
+                    <div class="value" id="pref-main-color">米白、浅灰、高级灰</div>
                 </div>
                 <div class="info-item">
                     <div class="label">点缀色</div>
-                    <div class="value">墨绿、焦糖色、黑色</div>
+                    <div class="value" id="pref-accent-color">黑色、原木色、线性灯光</div>
                 </div>
                 <div class="info-item">
                     <div class="label">地面材质</div>
-                    <div class="value">全屋木地板 / 客厅柔光砖</div>
+                    <div class="value" id="pref-floor-material">全屋木地板 / 客厅柔光砖</div>
                 </div>
                 <div class="info-item">
                     <div class="label">墙面处理</div>
-                    <div class="value">乳胶漆 / 局部艺术涂料</div>
+                    <div class="value" id="pref-wall-material">乳胶漆 / 局部艺术涂料</div>
                 </div>
             </div>
         </div>
 
+        <!-- 3. 各空间需求 -->
         <div class="section-title">
             <div class="num">3</div>
             各空间装修需求
@@ -585,11 +535,13 @@
             </div>
         </div>
 
+        <!-- 4. 参考图集 -->
         <div class="section-title">
             <div class="num">4</div>
             风格参考图集
         </div>
 
+        <!-- 客厅参考 -->
         <div class="card">
             <h3>客厅参考</h3>
             <div class="gallery">
@@ -651,6 +603,7 @@
             </div>
         </div>
 
+        <!-- 卧室参考 -->
         <div class="card">
             <h3>卧室参考</h3>
             <div class="gallery">
@@ -695,6 +648,7 @@
             </div>
         </div>
 
+        <!-- 厨卫参考 -->
         <div class="card">
             <h3>厨房 & 卫生间参考</h3>
             <div class="gallery">
@@ -739,6 +693,7 @@
             </div>
         </div>
 
+        <!-- 5. 预算与工期 -->
         <div class="section-title">
             <div class="num">5</div>
             预算与工期规划
@@ -797,6 +752,7 @@
             </div>
         </div>
 
+        <!-- 6. 特殊需求 -->
         <div class="section-title">
             <div class="num">6</div>
             特殊需求 & 注意事项
@@ -818,39 +774,71 @@
     </div>
 
     <script>
-        // 核心功能：风格库数据生成与动态切换交互
+        // 核心功能：风格库数据生成（包含色调材质）与动态切换交互
         const styleData = {
             modern: {
                 title: "💡 现代简约风格描述",
-                text: "整体偏向<strong>现代简约</strong>。希望以白色、米色、浅木色或高级灰为主色调，营造温馨明亮、简洁大气的居住氛围。不喜欢过于复杂的装饰线条，偏好干净利落的硬装，通过隐藏式软装、线型无主灯光来提升质感。特别注重隐藏式收纳系统的柜体规划，希望家里看起来极简整洁且富有高科技现代感。"
+                text: "整体偏向<strong>现代简约</strong>。希望以白色、米色、浅木色或高级灰为主色调，营造温馨明亮、简洁大气的居住氛围。不喜欢过于复杂的装饰线条，偏好干净利落的硬装，通过隐藏式软装、线型无主灯光来提升质感。特别注重隐藏式收纳系统的柜体规划，希望家里看起来极简整洁且富有高科技现代感。",
+                mainColor: "米白、浅灰、高级灰",
+                accentColor: "黑色、原木色、线性灯光",
+                floor: "全屋木地板 / 客厅柔光砖",
+                wall: "乳胶漆 / 局部艺术涂料"
             },
             nordic: {
                 title: "💡 北欧风格描述",
-                text: "强调<strong>自然、舒适与极佳的采光</strong>。基调以纯白或浅冷灰为主，大量搭配富有蓬松柔和感的布艺织物、亮色抱枕以及浅色几何地毯。家具选择上偏爱细腿木质结构，尽量保留木材天然纹理。整体空间不显厚重，追求轻松惬意、充满阳光和生机的‘北欧慵懒感’。"
+                text: "强调<strong>自然、舒适与极佳的采光</strong>。基调以纯白或浅冷灰为主，大量搭配富有蓬松柔和感的布艺织物、亮色抱枕以及浅色几何地毯。家具选择上偏爱细腿木质结构，尽量保留木材天然纹理。整体空间不显厚重，追求轻松惬意、充满阳光和生机的‘北欧慵懒感’。",
+                mainColor: "纯白、暖灰、浅蓝",
+                accentColor: "柠檬黄、薄荷绿、几何拼色",
+                floor: "浅色白橡木地板 / 哑光浅灰砖",
+                wall: "环保乳胶漆 / 局部莫兰迪色拼墙"
             },
             muji: {
                 title: "💡 日式原木风格描述",
-                text: "核心是以<strong>原木色与留白</strong>来传递平静淡雅的生活哲学。全屋硬装极度精简，广泛采用白橡木或原木质感的家具、格栅与无拉手隐形柜。搭配棉麻窗帘、榻榻米软包和暖白、暖黄灯光，极少使用强烈对比色彩，让人一进家门就能感受到大自然的宁静与质朴治愈力。"
+                text: "核心是以<strong>原木色与留白</strong>来传递平静淡雅的生活哲学。全屋硬装极度精简，广泛采用白橡木或原木质感的家具、格栅与无拉手隐形柜.搭配棉麻窗帘、榻榻米软包和暖白、暖黄灯光，极少使用强烈对比色彩，让人一进家门就能感受到大自然的宁静与质朴治愈力。",
+                mainColor: "纯白、燕麦色、原木色",
+                accentColor: "麻灰色、茶绿色、浅米黄",
+                floor: "原木风实木复合地板 / 编织地垫",
+                wall: "硅藻泥 / 暖白色细腻乳胶漆"
             },
             luxury: {
                 title: "💡 现代轻奢风格描述",
-                text: "在现代简约的硬装底色上，融入<strong>高品质的精致材质</strong>。通常运用高级大理石、金属黄铜线条线条、天鹅绒软包以及高档玻璃等元素点缀局部。色调偏爱黑白灰搭配深蓝、墨绿或香槟金。注重线条的精致感与材质的反光质感，在低调中不经意流露出轻贵和奢华的精致格调。"
+                text: "在现代简约的硬装底色上，融入<strong>高品质的精致材质</strong>。通常运用高级大理石、金属黄铜线条、天鹅绒软包以及高档玻璃等元素点缀局部。色调偏爱黑白灰搭配深蓝、墨绿或香槟金。注重线条的精致感与材质的反光质感，在低调中不经意流露出轻贵和奢华的精致格调。",
+                mainColor: "高级爵士白、深邃灰、琥珀色",
+                accentColor: "香槟金、钛金黑、翡翠绿",
+                floor: "亮面大理石瓷砖 / 鱼骨拼深色地板",
+                wall: "硬包背景墙 / 金属线条定制造型"
             },
             cream: {
                 title: "💡 暖系奶油风格描述",
-                text: "当下非常流行的一种<strong>温馨治愈系风格</strong>。全屋大面积使用奶油色、浅米色和燕麦色，墙面与天花板通常做一体化乳胶漆延伸。空间中会大量出现圆弧形垭口、微水泥、软萌的多巴胺圆润弧度家具（如云朵沙发）。完全舍弃尖锐棱角，辅以温暖绵密的毛绒材质，视觉上像包裹在厚厚奶泡里一样轻柔、解压。"
+                text: "当下非常流行的一种<strong>温馨治愈系风格</strong>。全屋大面积使用奶油色、浅米色和燕麦色，墙面与天花板通常做一体化乳胶漆延伸。空间中会大量出现圆弧形垭口、微水泥、软萌的多巴胺圆润弧度家具（如云朵沙发）。完全舍弃尖锐棱角，辅以温暖绵密的毛绒材质，视觉上像包裹在厚厚奶泡里一样轻柔、解压。",
+                mainColor: "奶油白、羊脂玉、轻燕麦色",
+                accentColor: "奶茶色、暖木色、淡粉棕",
+                floor: "微水泥自流平 / 柔光素色通体砖",
+                wall: "圆弧角造型墙 / 艺术蛋壳漆"
             },
             wabisabi: {
                 title: "💡 侘寂风格描述",
-                text: "推崇<strong>残缺之美与时间的痕迹</strong>。硬装材料多采用艺术涂料、微水泥、稻草漆和粗糙的原石质感。色彩极度克制，以大地色、枯木色、灰色和暗米色为主。家具往往带有古朴的手工感或自然残损痕迹，几乎没有亮面和繁复装饰，旨在表现空灵、静谧、反璞归真的质感和冥想氛围。"
+                text: "推崇<strong>残缺之美与时间的痕迹</strong>。硬装材料多采用艺术涂料、微水泥、稻草漆和粗糙的原石质感。色彩极度克制，以大地色、枯木色、灰色和暗米色为主。家具往往带有古朴的手工感或自然残损痕迹，几乎没有亮面和繁复装饰，旨在表现空灵、静谧、反璞归真的质感和冥想氛围。",
+                mainColor: "水泥灰、砂岩色、陶土色",
+                accentColor: "枯枝黑、深褐木、斑驳古铜",
+                floor: "粗砺感微水泥 / 仿古无缝地坪",
+                wall: "肌理感艺术砂浆 / 质感稻草漆"
             },
             vintage: {
                 title: "💡 复古中古风格描述",
-                text: "充满<strong>20世纪中叶（Mid-Century Modern）的电影质感与复古韵味</strong>。偏爱胡桃木、藤编、长虹玻璃和马赛克砖等带有时代印记的材质。色彩浓烈饱满，常以焦糖色、中古绿、复古黄作为视觉焦点。整体设计兼具几何线条的利落和古典家具的优雅，散发着浓郁的艺术人文气息。"
+                text: "充满<strong>20世纪中叶（Mid-Century Modern）的电影质感与复古韵味</strong>。偏爱胡桃木、藤编、长虹玻璃和马赛克砖等带有时代印记的材质。色彩浓烈饱满，常以焦糖色、中古绿、复古黄作为视觉焦点。设计兼具几何线条的利落和古典家具的优雅，散发着浓郁的艺术人文气息。",
+                mainColor: "胡桃木色、黄铜色、象牙白",
+                accentColor: "焦糖橙、牛油果绿、复古芥末黄",
+                floor: "人字拼深色胡桃木地板 / 局部花砖",
+                wall: "有色乳胶漆 / 艺术复古墙纸"
             },
             chinese: {
                 title: "💡 新中式风格描述",
-                text: "将<strong>传统中式美学进行现代化的提炼与简化</strong>。告别了老式中式的沉闷压抑，采用大方利落的当代空间线条，局部嵌入中式山水屏风、中式对称格栅、水墨大理石或禅意盆景。色彩多为高雅的墨黑、红木色搭配大面积留白。既保留了华夏风骨的庄重与东方儒雅之气，又兼顾了现代居住的舒适度和实用性。"
+                text: "将<strong>传统中式美学进行现代化的提炼与简化</strong>。告别了老式中式的沉闷压抑，采用大方利落的当代空间线条，局部嵌入中式山水屏风、中式对称格栅、水墨大理石或禅意盆景。色彩多为高雅的墨黑、红木色搭配大面积留白。既保留了东方儒雅之气，又兼顾了现代居住的舒适度和实用性。",
+                mainColor: "留白、水墨黑、花梨木色",
+                accentColor: "中国红、故宫霁蓝、尊贵玉石绿",
+                floor: "高档灰色柔光大理石砖 / 深色木地板",
+                wall: "中式木饰面格栅 / 艺术山水壁布"
             }
         };
 
@@ -864,9 +852,28 @@
             const titleEl = document.getElementById('style-title');
             const textEl = document.getElementById('style-text');
             
+            // 获取偏好格子的元素
+            const mainColorEl = document.getElementById('pref-main-color');
+            const accentColorEl = document.getElementById('pref-accent-color');
+            const floorEl = document.getElementById('pref-floor-material');
+            const wallEl = document.getElementById('pref-wall-material');
+            
             if (styleData[styleKey]) {
+                // 更新大段描述
                 titleEl.innerHTML = styleData[styleKey].title;
                 textEl.innerHTML = styleData[styleKey].text;
+                
+                // 同步更新下方“色调与材质偏好”的4个格子
+                mainColorEl.innerText = styleData[styleKey].mainColor;
+                accentColorEl.innerText = styleData[styleKey].accentColor;
+                floorEl.innerText = styleData[styleKey].floor;
+                wallEl.innerText = styleData[styleKey].wall;
+
+                // 增加一个小小的视觉刷新闪烁，让动效更灵动
+                document.querySelectorAll('.info-grid .info-item').forEach(item => {
+                    item.style.opacity = 0.5;
+                    setTimeout(() => { item.style.opacity = 1; }, 100);
+                });
             }
         }
 

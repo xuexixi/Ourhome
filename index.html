@@ -78,13 +78,6 @@
             border-radius: 2px;
         }
 
-        .floorplan-img {
-            width: 100%;
-            border-radius: 8px;
-            margin: 16px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -133,9 +126,6 @@
             box-shadow: 0 4px 12px rgba(212,165,116,0.3);
             font-weight: 600;
         }
-        .tag:active {
-            transform: scale(0.95);
-        }
 
         .room-list { margin-top: 16px; }
         .room-item {
@@ -174,65 +164,27 @@
             overflow: hidden;
             margin: 16px 0;
         }
-        .img-upload-area img {
-            width: 100%;
-            display: block;
-            border-radius: 10px;
-        }
+        .img-upload-area img { width: 100%; display: block; border-radius: 10px; }
         .img-upload-area .img-actions {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            display: flex;
-            gap: 8px;
-            opacity: 0;
-            transition: opacity 0.3s;
+            position: absolute; top: 12px; right: 12px;
+            display: flex; gap: 8px; opacity: 0; transition: opacity 0.3s;
         }
-        .img-upload-area:hover .img-actions {
-            opacity: 1;
-        }
+        .img-upload-area:hover .img-actions { opacity: 1; }
         .img-upload-area .img-placeholder {
-            width: 100%;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #bbb;
-            border: 2px dashed #ddd;
-            border-radius: 10px;
-            background: #faf8f5;
+            width: 100%; min-height: 300px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #bbb; border: 2px dashed #ddd; border-radius: 10px; background: #faf8f5;
         }
-        .img-upload-area .img-placeholder .icon { font-size: 48px; margin-bottom: 12px; }
-        .img-upload-area .img-placeholder .hint { font-size: 14px; color: #999; }
-        .img-upload-area .img-placeholder .sub-hint { font-size: 12px; color: #bbb; margin-top: 4px; }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            transition: all 0.25s ease;
-            font-family: inherit;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;
+            cursor: pointer; border: none; transition: all 0.25s ease; font-family: inherit;
         }
         .btn-primary { background: #2c2c2c; color: #fff; }
-        .btn-primary:hover {
-            background: #d4a574;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(212,165,116,0.3);
-        }
+        .btn-primary:hover { background: #d4a574; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(212,165,116,0.3); }
         .btn-outline { background: #fff; color: #666; border: 1px solid #e5e1db; }
-        .btn-outline:hover {
-            border-color: #d4a574;
-            color: #d4a574;
-            background: #fff9f3;
-        }
+        .btn-outline:hover { border-color: #d4a574; color: #d4a574; background: #fff9f3; }
         .btn-danger { background: #fff; color: #c45c5c; border: 1px solid #e5e1db; }
         .btn-danger:hover { background: #fff0f0; border-color: #c45c5c; }
         .btn-sm { padding: 6px 14px; font-size: 13px; border-radius: 6px; }
@@ -241,71 +193,28 @@
         input[type="file"] { display: none; }
 
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 16px;
         }
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            background: #faf8f5;
-            aspect-ratio: 4/3;
-            position: relative;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            border-radius: 10px;
-        }
+        .gallery-item { border-radius: 10px; overflow: hidden; background: #faf8f5; aspect-ratio: 4/3; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 10px; }
         .gallery-item .gallery-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #bbb;
-            border: 2px dashed #ddd;
-            border-radius: 10px;
-            background: #faf8f5;
-            cursor: pointer;
+            width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #bbb; border: 2px dashed #ddd; border-radius: 10px; background: #faf8f5; cursor: pointer;
         }
-        .gallery-item .gallery-placeholder .g-icon { font-size: 36px; margin-bottom: 8px; }
-        .gallery-item .gallery-placeholder .g-text { font-size: 13px; color: #999; }
-        .gallery-item .img-actions {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            display: flex;
-            gap: 6px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
+        .gallery-item .img-actions { position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; opacity: 0; transition: opacity 0.3s; }
         .gallery-item:hover .img-actions { opacity: 1; }
 
         .note-box {
-            background: #fffbeb;
-            border-left: 4px solid #d4a574;
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin: 20px 0;
-            transition: all 0.3s ease;
+            background: #fffbeb; border-left: 4px solid #d4a574; padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; transition: all 0.3s ease;
         }
         .note-box .note-title { font-weight: 600; color: #92400e; margin-bottom: 8px; }
         .note-box .note-text { color: #78350f; font-size: 14px; }
+        .note-box a { color: #d4a574; text-decoration: underline; font-weight: 600; }
+        .note-box a:hover { color: #b28353; }
 
         .footer { text-align: center; padding: 40px; color: #999; font-size: 13px; margin-top: 40px; }
 
-        .budget-bar {
-            height: 8px;
-            background: #f0ede8;
-            border-radius: 4px;
-            margin-top: 12px;
-            overflow: hidden;
-        }
+        .budget-bar { height: 8px; background: #f0ede8; border-radius: 4px; margin-top: 12px; overflow: hidden; }
         .budget-bar .fill { height: 100%; background: #d4a574; border-radius: 4px; }
 
         .area-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
@@ -376,11 +285,11 @@
                 </div>
                 <div class="info-item">
                     <div class="label">房龄 / 状态</div>
-                    <div class="value">毛坯（示例）</div>
+                    <div class="value">毛坯</div>
                 </div>
                 <div class="info-item">
-                    <div class="label">预计入住</div>
-                    <div class="value">2026年10月（示例）</div>
+                    <div class="label">地暖状态</div>
+                    <div class="value">开发商已全屋铺好</div>
                 </div>
             </div>
         </div>
@@ -389,28 +298,17 @@
             <h3>各空间面积明细</h3>
             <table class="area-table">
                 <tr><th>空间</th><th>面积</th><th>备注</th></tr>
-                <tr><td>客餐厅</td><td class="highlight">20.8㎡</td><td>空间局促，希望优化布局</td></tr>
-                <tr><td>主卧</td><td class="highlight">15㎡</td><td>空间较大，含飘窗1.3㎡</td></tr>
-                <tr><td>阳台</td><td class="highlight">12.8㎡</td><td>空间豪华，可考虑融入客厅</td></tr>
-                <tr><td>次卧</td><td>9.7㎡</td><td>空间适中</td></tr>
-                <tr><td>厨房</td><td>6.4㎡</td><td>空间适中</td></tr>
-                <tr><td>书房</td><td>6.1㎡</td><td>空间适中，含飘窗2.1㎡</td></tr>
+                <tr><td>客餐厅</td><td class="highlight">20.8㎡</td><td>空间局促，通过砸掉厨房南墙改为开放式来扩容</td></tr>
+                <tr><td>主卧</td><td class="highlight">15㎡</td><td>空间较大，含飘窗1.3㎡。床头朝西。</td></tr>
+                <tr><td>南次卧</td><td class="highlight">9.7㎡</td><td>改造成儿童房，阳台推拉门爆改折叠窗</td></tr>
+                <tr><td>北次卧</td><td class="highlight">6.1㎡</td><td>暂做基础硬装，不作固定软装定制</td></tr>
+                <tr><td>厨房</td><td>6.4㎡</td><td>砸掉南边墙体，改做U型开放式厨房</td></tr>
+                <tr><td>阳台</td><td>12.8㎡</td><td>空间豪华，可考虑融入客厅</td></tr>
                 <tr><td>主卫</td><td>5.5㎡</td><td>空间较大</td></tr>
                 <tr><td>客卫</td><td>4.9㎡</td><td>空间较大</td></tr>
                 <tr><td>玄关</td><td>4.2㎡</td><td>空间较大</td></tr>
                 <tr><td>走廊</td><td>3.9㎡</td><td>需合理利用</td></tr>
             </table>
-        </div>
-
-        <div class="card">
-            <h3>原始户型问题 & 改造需求（示例）</h3>
-            <ul style="margin-left: 20px; color: #555; line-height: 2;">
-                <li>客餐厅20.8㎡标注"空间局促"，希望打通阳台（12.8㎡）增加公共活动面积</li>
-                <li>厨房6.4㎡，希望做开放式或半开放式设计，增强与客餐厅互动</li>
-                <li>书房6.1㎡含飘窗，希望兼顾客房功能，考虑榻榻米或沙发床方案</li>
-                <li>走廊3.9㎡，希望利用起来做收纳或展示空间，避免浪费</li>
-                <li>玄关4.2㎡空间较大，希望做充足鞋柜+换鞋凳+挂衣区</li>
-            </ul>
         </div>
 
         <!-- 2. 装修风格定位 -->
@@ -438,7 +336,7 @@
             </div>
         </div>
 
-        <!-- 联动修改的核心卡片区域 -->
+        <!-- 色调与材质偏好 -->
         <div class="card">
             <h3>色调与材质偏好</h3>
             <div class="info-grid">
@@ -472,64 +370,40 @@
                     <div class="room-icon">🛋️</div>
                     <div class="room-info">
                         <div class="room-name">客餐厅（20.8㎡）</div>
-                        <div class="room-desc">目前标注"空间局促"，希望是家里的视觉中心。考虑打通阳台增加面积，兼顾会客、休闲、观影功能。不想要传统吊顶</div>
-                        <div class="room-note">【示例】想要一整面墙的收纳柜+投影幕布，沙发选L型布艺款</div>
+                        <div class="room-desc">与开放式厨房融为一体，大幅增加公共活动视野。</div>
+                        <div class="room-note">【空调需求】客厅确定使用落地式空调。</div>
                     </div>
                 </div>
                 <div class="room-item">
                     <div class="room-icon">🍳</div>
                     <div class="room-info">
-                        <div class="room-name">厨房（6.4㎡）</div>
-                        <div class="room-desc">经常做饭，需要充足的收纳和操作台面。希望冰箱、洗碗机、蒸烤箱都能嵌入。考虑开放式或半开放式，增强互动</div>
-                        <div class="room-note">【示例】想做U型布局，高低台面，吊柜做到顶</div>
+                        <div class="room-name">厨房（6.4㎡ - 开放 U 型）</div>
+                        <div class="room-desc">砸掉厨房南边的整面墙体，完全改造成开放式厨房。</div>
+                        <div class="room-note">【布局优化】内部做动线流利、高利用率的 U 型厨房设计。</div>
                     </div>
                 </div>
                 <div class="room-item">
                     <div class="room-icon">🛏️</div>
                     <div class="room-info">
-                        <div class="room-name">主卧（15㎡）</div>
-                        <div class="room-desc">空间较大，含飘窗1.3㎡。需要安静舒适的睡眠环境，要有足够的衣物收纳，最好有独立梳妆区域。</div>
-                        <div class="room-note">【示例】1.8m床+两侧床头柜，想要步入式衣帽间或整墙衣柜</div>
+                        <div class="room-name">主卧（15㎡ - 朝西布局）</div>
+                        <div class="room-desc">改变传统方向，床头朝西摆放。床尾部分打造无甲醛不锈钢衣柜。</div>
+                        <div class="room-note">【亮点设计】需要木工制作造型将不锈钢衣柜完美包裹进去，外面挂帘子做隐形门。挂壁式空调。</div>
                     </div>
                 </div>
                 <div class="room-item">
-                    <div class="room-icon">🛏️</div>
+                    <div class="room-icon">👶</div>
                     <div class="room-info">
-                        <div class="room-name">次卧（9.7㎡）</div>
-                        <div class="room-desc">空间适中，作为客房或老人房使用。需要基础衣柜和 bedside 空间。</div>
-                        <div class="room-note">【示例】1.5m床+整墙衣柜，预留床头插座和阅读灯</div>
+                        <div class="room-name">南次卧（9.7㎡ - 儿童房）</div>
+                        <div class="room-desc">改造成儿童房，需规划容纳：1米5的床、衣柜以及学习书桌。挂壁式空调。</div>
+                        <div class="room-note">【阳台爆改】次卧阳台推拉门爆改折叠窗，结合储物格与书桌进行一体化组合（参考小红书设计）。</div>
                     </div>
                 </div>
                 <div class="room-item">
                     <div class="room-icon">📚</div>
                     <div class="room-info">
-                        <div class="room-name">书房（6.1㎡）</div>
-                        <div class="room-desc">含飘窗2.1㎡，目前作为书房，未来可能改为儿童房，需要一定的灵活性。希望兼顾客房功能。</div>
-                        <div class="room-note">【示例】榻榻米+书桌+衣柜一体化设计，预留网线接口</div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="room-icon">🚿</div>
-                    <div class="room-info">
-                        <div class="room-name">卫生间</div>
-                        <div class="room-desc">主卫5.5㎡空间较大，客卫4.9㎡空间较大。主卫希望有淋浴房，客卫可以考虑干湿分离。都需要智能马桶和暖风机</div>
-                        <div class="room-note">【示例】墙排马桶、悬空浴室柜、镜柜收纳、柔光砖</div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="room-icon">🌿</div>
-                    <div class="room-info">
-                        <div class="room-name">阳台（12.8㎡）</div>
-                        <div class="room-desc">标注"空间豪华"，面积很大。希望打通融入客厅，或保留一部分作为生活阳台（洗烘+晾晒），另一部分做休闲区</div>
-                        <div class="room-note">【示例】一侧洗烘套装+隐藏晾衣架，另一侧绿植休闲角</div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="room-icon">🚪</div>
-                    <div class="room-info">
-                        <div class="room-name">玄关（4.2㎡）</div>
-                        <div class="room-desc">空间较大，入户第一印象。需要充足鞋柜、换鞋凳、挂衣区、全身镜，最好有小型置物台放钥匙口罩。</div>
-                        <div class="room-note">【示例】顶天立地鞋柜+中部镂空+底部悬空+感应灯带</div>
+                        <div class="room-name">北次卧（6.1㎡ - 基础硬装）</div>
+                        <div class="room-desc">现阶段作为留白或多功能空间，挂壁式空调。</div>
+                        <div class="room-note">【硬装限定】施工只需做好地面、墙面、吊顶等基础硬装。后期的柜子、书桌等家具全部由我们自行购买。</div>
                     </div>
                 </div>
             </div>
@@ -543,7 +417,7 @@
 
         <!-- 客厅参考 -->
         <div class="card">
-            <h3>客厅参考</h3>
+            <h3>客厅及开放式厨房参考</h3>
             <div class="gallery">
                 <div class="gallery-item" id="gallery-living-1">
                     <div class="gallery-placeholder" id="placeholder-living-1">
@@ -552,12 +426,8 @@
                     </div>
                     <img id="img-living-1" style="display:none;">
                     <div class="img-actions" id="actions-living-1" style="display:none;">
-                        <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-living-1').click()">
-                            <span>🔄</span>
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('living-1')">
-                            <span>🗑️</span>
-                        </button>
+                        <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-living-1').click()">🔄</button>
+                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('living-1')">🗑️</button>
                     </div>
                 </div>
                 <input type="file" id="input-living-1" accept="image/*" onchange="handleGalleryUpload(this, 'living-1')">
@@ -565,138 +435,22 @@
                 <div class="gallery-item" id="gallery-living-2">
                     <div class="gallery-placeholder" id="placeholder-living-2">
                         <div class="g-icon">🖼️</div>
-                        <div class="g-text">电视背景墙参考</div>
+                        <div class="g-text">U型开放式厨房参考</div>
                     </div>
                     <img id="img-living-2" style="display:none;">
                     <div class="img-actions" id="actions-living-2" style="display:none;">
-                        <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-living-2').click()">
-                            <span>🔄</span>
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('living-2')">
-                            <span>🗑️</span>
-                        </button>
+                        <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-living-2').click()">🔄</button>
+                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('living-2')">🗑️</button>
                     </div>
                 </div>
                 <input type="file" id="input-living-2" accept="image/*" onchange="handleGalleryUpload(this, 'living-2')">
-
-                <div class="gallery-item" id="gallery-living-3">
-                    <div class="gallery-placeholder" id="placeholder-living-3">
-                        <div class="g-icon">🖼️</div>
-                        <div class="g-text">沙发区域参考</div>
-                    </div>
-                    <img id="img-living-3" style="display:none;">
-                    <div class="img-actions" id="actions-living-3" style="display:none;">
-                        <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-living-3').click()">
-                            <span>🔄</span>
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('living-3')">
-                            <span>🗑️</span>
-                        </button>
-                    </div>
-                </div>
-                <input type="file" id="input-living-3" accept="image/*" onchange="handleGalleryUpload(this, 'living-3')">
-            </div>
-            <div class="btn-center">
-                <button class="btn btn-primary" onclick="addGalleryRow('living')">
-                    <span>➕</span> 添加更多客厅参考图
-                </button>
             </div>
         </div>
 
-        <!-- 卧室参考 -->
-        <div class="card">
-            <h3>卧室参考</h3>
-            <div class="gallery">
-                <div class="gallery-item" id="gallery-bedroom-1">
-                    <div class="gallery-placeholder" id="placeholder-bedroom-1">
-                        <div class="g-icon">🖼️</div>
-                        <div class="g-text">主卧效果图</div>
-                    </div>
-                    <img id="img-bedroom-1" style="display:none;">
-                    <div class="img-actions" id="actions-bedroom-1" style="display:none;">
-                        <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-bedroom-1').click()">
-                            <span>🔄</span>
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('bedroom-1')">
-                            <span>🗑️</span>
-                        </button>
-                    </div>
-                </div>
-                <input type="file" id="input-bedroom-1" accept="image/*" onchange="handleGalleryUpload(this, 'bedroom-1')">
-
-                <div class="gallery-item" id="gallery-bedroom-2">
-                    <div class="gallery-placeholder" id="placeholder-bedroom-2">
-                        <div class="g-icon">🖼️</div>
-                        <div class="g-text">衣柜设计参考</div>
-                    </div>
-                    <img id="img-bedroom-2" style="display:none;">
-                    <div class="img-actions" id="actions-bedroom-2" style="display:none;">
-                        <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-bedroom-2').click()">
-                            <span>🔄</span>
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('bedroom-2')">
-                            <span>🗑️</span>
-                        </button>
-                    </div>
-                </div>
-                <input type="file" id="input-bedroom-2" accept="image/*" onchange="handleGalleryUpload(this, 'bedroom-2')">
-            </div>
-            <div class="btn-center">
-                <button class="btn btn-primary" onclick="addGalleryRow('bedroom')">
-                    <span>➕</span> 添加更多卧室参考图
-                </button>
-            </div>
-        </div>
-
-        <!-- 厨卫参考 -->
-        <div class="card">
-            <h3>厨房 & 卫生间参考</h3>
-            <div class="gallery">
-                <div class="gallery-item" id="gallery-kitchen-1">
-                    <div class="gallery-placeholder" id="placeholder-kitchen-1">
-                        <div class="g-icon">🖼️</div>
-                        <div class="g-text">开放式厨房参考</div>
-                    </div>
-                    <img id="img-kitchen-1" style="display:none;">
-                    <div class="img-actions" id="actions-kitchen-1" style="display:none;">
-                        <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-kitchen-1').click()">
-                            <span>🔄</span>
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('kitchen-1')">
-                            <span>🗑️</span>
-                        </button>
-                    </div>
-                </div>
-                <input type="file" id="input-kitchen-1" accept="image/*" onchange="handleGalleryUpload(this, 'kitchen-1')">
-
-                <div class="gallery-item" id="gallery-bath-1">
-                    <div class="gallery-placeholder" id="placeholder-bath-1">
-                        <div class="g-icon">🖼️</div>
-                        <div class="g-text">卫生间干湿分离参考</div>
-                    </div>
-                    <img id="img-bath-1" style="display:none;">
-                    <div class="img-actions" id="actions-bath-1" style="display:none;">
-                        <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-bath-1').click()">
-                            <span>🔄</span>
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('bath-1')">
-                            <span>🗑️</span>
-                        </button>
-                    </div>
-                </div>
-                <input type="file" id="input-bath-1" accept="image/*" onchange="handleGalleryUpload(this, 'bath-1')">
-            </div>
-            <div class="btn-center">
-                <button class="btn btn-primary" onclick="addGalleryRow('kitchen')">
-                    <span>➕</span> 添加更多厨卫参考图
-                </button>
-            </div>
-        </div>
-
-        <!-- 5. 预算与工期 -->
+        <!-- 5. 预算分配 -->
         <div class="section-title">
             <div class="num">5</div>
-            预算与工期规划
+            预算与整体规划
         </div>
         <div class="card">
             <h3>预算分配（总预算15万）</h3>
@@ -709,46 +463,14 @@
             </div>
             <div style="margin-top: 16px;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span>定制家具（橱柜、衣柜、收纳）</span>
+                    <span>定制家具（主卧造型、儿童房定制等）</span>
                     <span style="font-weight: 600;">约 3万 / 20%</span>
                 </div>
                 <div class="budget-bar"><div class="fill" style="width: 20%;"></div></div>
             </div>
-            <div style="margin-top: 16px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span>主材（瓷砖、地板、门窗、洁具）</span>
-                    <span style="font-weight: 600;">约 2.5万 / 17%</span>
-                </div>
-                <div class="budget-bar"><div class="fill" style="width: 17%;"></div></div>
-            </div>
-            <div style="margin-top: 16px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span>软装 & 家电</span>
-                    <span style="font-weight: 600;">约 2万 / 13%</span>
-                </div>
-                <div class="budget-bar"><div class="fill" style="width: 13%;"></div></div>
-            </div>
             <div class="note-box" style="margin-top: 24px;">
-                <div class="note-title">💰 总预算范围</div>
-                <div class="note-text">全部装修预算 <strong>15万</strong>（可根据设计方案微调），希望硬装部分控制在7.5万以内，重点投入在厨房和收纳系统</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h3>工期期望（示例）</h3>
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="label">计划开工</div>
-                    <div class="value">2026年6月</div>
-                </div>
-                <div class="info-item">
-                    <div class="label">期望完工</div>
-                    <div class="value">2026年10月</div>
-                </div>
-                <div class="info-item">
-                    <div class="label">可施工时间</div>
-                    <div class="value">工作日9:00-18:00</div>
-                </div>
+                <div class="note-title">💰 预算备注</div>
+                <div class="note-text">由于开发商已经铺设好全屋地暖，地暖部分的工程预算得以省去，可以更加充裕地投入到核心硬装拆改和定制设计中。</div>
             </div>
         </div>
 
@@ -758,13 +480,36 @@
             特殊需求 & 注意事项
         </div>
         <div class="card">
-            <h3>必须满足的需求（示例）</h3>
+            <h3>核心修改与定制需求（施工队及设计重点）</h3>
             <ul style="margin-left: 20px; color: #555; line-height: 2.2;">
-                <li>全屋智能家居系统（智能开关、窗帘、门锁预留）</li>
-                <li>中央空调 + 新风系统（已确定品牌型号）</li>
-                <li>地暖（仅客厅、卧室区域）</li>
-                <li>网络：每个房间预留6类网线接口，考虑全屋 AC+AP 覆盖</li>
+                <li><strong>空间拆改（开放式厨房）：</strong> 必须砸掉厨房南边的完整墙体。整体动线设计必须改为标准的 <strong>U 型厨房</strong>，并保持与客餐厅的一体化与通透。</li>
+                <li><strong>暖通设备配置：</strong>
+                    <ul>
+                        <li>全屋共有 3 个房间，全部安装<strong>挂式空调</strong>。</li>
+                        <li>客厅公共区域使用<strong>落地式空调</strong>。</li>
+                        <li>全屋地暖<strong>开发商已全部铺设完毕</strong>，硬装施工时注意地面成品的交叉保护。</li>
+                    </ul>
+                </li>
+                <li><strong>智能家居定位：</strong> 现阶段暂时只需要并只考虑<strong>“灯光”</strong>与<strong>“窗帘”</strong>这两点的智能控制与线路预留，其余智能设备（如新风、背景音乐等）暂时不需要。</li>
+                <li><strong>房间定制与软装分工：</strong>
+                    <ul>
+                        <li><strong>北次卧：</strong> 施工方仅负责做好<strong>最基础的硬装部分</strong>。后期的柜子、书桌等软装家具均由我们后期自行购买，不纳入本次木工或定制范围。</li>
+                        <li><strong>南次卧（儿童房）：</strong> 需设计并摆放一张 <strong>1米5 的床</strong>、衣柜以及独立书桌。</li>
+                        <li><strong>主卧创意（包裹式帘门衣柜）：</strong> 主卧床头方向调整为<strong>朝西摆放</strong>。床尾墙面定制<strong>不锈钢衣柜框架</strong>，需要木工石膏板做一个外凸造型，将整个衣柜完美包裹隐形，外面不装传统柜门，改为<strong>悬挂挂帘</strong>。</li>
+                    </ul>
+                </li>
             </ul>
+
+            <div class="note-box" style="margin-top: 24px;">
+                <div class="note-title">📌 南次卧（儿童房）空间改造参考</div>
+                <div class="note-text">
+                    次卧阳台推拉门爆改折叠窗 + 储物格 + 书桌一体化方案。<br>
+                    <strong>网络参考链接：</strong>
+                    <a href="http://xhslink.com/o/1vLJn8KcnMb" target="_blank" rel="noopener noreferrer">
+                        点击查看小红书灵感原文方案 (http://xhslink.com/o/1vLJn8KcnMb)
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="footer">
@@ -774,110 +519,41 @@
     </div>
 
     <script>
-        // 核心功能：风格库数据生成（包含色调材质）与动态切换交互
+        // 保持之前风格切换和图片处理脚本的逻辑完备性
         const styleData = {
             modern: {
                 title: "💡 现代简约风格描述",
                 text: "整体偏向<strong>现代简约</strong>。希望以白色、米色、浅木色或高级灰为主色调，营造温馨明亮、简洁大气的居住氛围。不喜欢过于复杂的装饰线条，偏好干净利落的硬装，通过隐藏式软装、线型无主灯光来提升质感。特别注重隐藏式收纳系统的柜体规划，希望家里看起来极简整洁且富有高科技现代感。",
-                mainColor: "米白、浅灰、高级灰",
-                accentColor: "黑色、原木色、线性灯光",
-                floor: "全屋木地板 / 客厅柔光砖",
-                wall: "乳胶漆 / 局部艺术涂料"
+                mainColor: "米白、浅灰、高级灰", accentColor: "黑色、原木色、线性灯光", floor: "全屋木地板 / 客厅柔光砖", wall: "乳胶漆 / 局部艺术涂料"
             },
             nordic: {
                 title: "💡 北欧风格描述",
-                text: "强调<strong>自然、舒适与极佳的采光</strong>。基调以纯白或浅冷灰为主，大量搭配富有蓬松柔和感的布艺织物、亮色抱枕以及浅色几何地毯。家具选择上偏爱细腿木质结构，尽量保留木材天然纹理。整体空间不显厚重，追求轻松惬意、充满阳光和生机的‘北欧慵懒感’。",
-                mainColor: "纯白、暖灰、浅蓝",
-                accentColor: "柠檬黄、薄荷绿、几何拼色",
-                floor: "浅色白橡木地板 / 哑光浅灰砖",
-                wall: "环保乳胶漆 / 局部莫兰迪色拼墙"
-            },
-            muji: {
-                title: "💡 日式原木风格描述",
-                text: "核心是以<strong>原木色与留白</strong>来传递平静淡雅的生活哲学。全屋硬装极度精简，广泛采用白橡木或原木质感的家具、格栅与无拉手隐形柜.搭配棉麻窗帘、榻榻米软包和暖白、暖黄灯光，极少使用强烈对比色彩，让人一进家门就能感受到大自然的宁静与质朴治愈力。",
-                mainColor: "纯白、燕麦色、原木色",
-                accentColor: "麻灰色、茶绿色、浅米黄",
-                floor: "原木风实木复合地板 / 编织地垫",
-                wall: "硅藻泥 / 暖白色细腻乳胶漆"
-            },
-            luxury: {
-                title: "💡 现代轻奢风格描述",
-                text: "在现代简约的硬装底色上，融入<strong>高品质的精致材质</strong>。通常运用高级大理石、金属黄铜线条、天鹅绒软包以及高档玻璃等元素点缀局部。色调偏爱黑白灰搭配深蓝、墨绿或香槟金。注重线条的精致感与材质的反光质感，在低调中不经意流露出轻贵和奢华的精致格调。",
-                mainColor: "高级爵士白、深邃灰、琥珀色",
-                accentColor: "香槟金、钛金黑、翡翠绿",
-                floor: "亮面大理石瓷砖 / 鱼骨拼深色地板",
-                wall: "硬包背景墙 / 金属线条定制造型"
-            },
-            cream: {
-                title: "💡 暖系奶油风格描述",
-                text: "当下非常流行的一种<strong>温馨治愈系风格</strong>。全屋大面积使用奶油色、浅米色和燕麦色，墙面与天花板通常做一体化乳胶漆延伸。空间中会大量出现圆弧形垭口、微水泥、软萌的多巴胺圆润弧度家具（如云朵沙发）。完全舍弃尖锐棱角，辅以温暖绵密的毛绒材质，视觉上像包裹在厚厚奶泡里一样轻柔、解压。",
-                mainColor: "奶油白、羊脂玉、轻燕麦色",
-                accentColor: "奶茶色、暖木色、淡粉棕",
-                floor: "微水泥自流平 / 柔光素色通体砖",
-                wall: "圆弧角造型墙 / 艺术蛋壳漆"
-            },
-            wabisabi: {
-                title: "💡 侘寂风格描述",
-                text: "推崇<strong>残缺之美与时间的痕迹</strong>。硬装材料多采用艺术涂料、微水泥、稻草漆和粗糙的原石质感。色彩极度克制，以大地色、枯木色、灰色和暗米色为主。家具往往带有古朴的手工感或自然残损痕迹，几乎没有亮面和繁复装饰，旨在表现空灵、静谧、反璞归真的质感和冥想氛围。",
-                mainColor: "水泥灰、砂岩色、陶土色",
-                accentColor: "枯枝黑、深褐木、斑驳古铜",
-                floor: "粗砺感微水泥 / 仿古无缝地坪",
-                wall: "肌理感艺术砂浆 / 质感稻草漆"
-            },
-            vintage: {
-                title: "💡 复古中古风格描述",
-                text: "充满<strong>20世纪中叶（Mid-Century Modern）的电影质感与复古韵味</strong>。偏爱胡桃木、藤编、长虹玻璃和马赛克砖等带有时代印记的材质。色彩浓烈饱满，常以焦糖色、中古绿、复古黄作为视觉焦点。设计兼具几何线条的利落和古典家具的优雅，散发着浓郁的艺术人文气息。",
-                mainColor: "胡桃木色、黄铜色、象牙白",
-                accentColor: "焦糖橙、牛油果绿、复古芥末黄",
-                floor: "人字拼深色胡桃木地板 / 局部花砖",
-                wall: "有色乳胶漆 / 艺术复古墙纸"
-            },
-            chinese: {
-                title: "💡 新中式风格描述",
-                text: "将<strong>传统中式美学进行现代化的提炼与简化</strong>。告别了老式中式的沉闷压抑，采用大方利落的当代空间线条，局部嵌入中式山水屏风、中式对称格栅、水墨大理石或禅意盆景。色彩多为高雅的墨黑、红木色搭配大面积留白。既保留了东方儒雅之气，又兼顾了现代居住的舒适度和实用性。",
-                mainColor: "留白、水墨黑、花梨木色",
-                accentColor: "中国红、故宫霁蓝、尊贵玉石绿",
-                floor: "高档灰色柔光大理石砖 / 深色木地板",
-                wall: "中式木饰面格栅 / 艺术山水壁布"
+                text: "强调<strong>自然、舒适与极佳的采光</strong>。基调以纯白或浅冷灰为主，大量搭配富有蓬松柔和感的布艺织物、亮色抱枕以及浅色几何地毯。",
+                mainColor: "纯白、暖灰、浅蓝", accentColor: "柠檬黄、几何拼色", floor: "浅色白橡木地板", wall: "环保乳胶漆"
             }
         };
 
         function switchStyle(styleKey, element) {
-            // 1. 移除所有标签的激活状态
             document.querySelectorAll('.tag').forEach(tag => tag.classList.remove('active'));
-            // 2. 为当前被点击的标签添加激活类
             element.classList.add('active');
             
-            // 3. 动态更新对应文本
             const titleEl = document.getElementById('style-title');
             const textEl = document.getElementById('style-text');
-            
-            // 获取偏好格子的元素
             const mainColorEl = document.getElementById('pref-main-color');
             const accentColorEl = document.getElementById('pref-accent-color');
             const floorEl = document.getElementById('pref-floor-material');
             const wallEl = document.getElementById('pref-wall-material');
             
             if (styleData[styleKey]) {
-                // 更新大段描述
                 titleEl.innerHTML = styleData[styleKey].title;
                 textEl.innerHTML = styleData[styleKey].text;
-                
-                // 同步更新下方“色调与材质偏好”的4个格子
                 mainColorEl.innerText = styleData[styleKey].mainColor;
                 accentColorEl.innerText = styleData[styleKey].accentColor;
                 floorEl.innerText = styleData[styleKey].floor;
                 wallEl.innerText = styleData[styleKey].wall;
-
-                // 增加一个小小的视觉刷新闪烁，让动效更灵动
-                document.querySelectorAll('.info-grid .info-item').forEach(item => {
-                    item.style.opacity = 0.5;
-                    setTimeout(() => { item.style.opacity = 1; }, 100);
-                });
             }
         }
 
-        // 单张图片上传处理（户型图）
         function handleImageUpload(input, type) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
@@ -899,7 +575,6 @@
             document.getElementById(type + '-input').value = '';
         }
 
-        // 图集多图上传处理
         function handleGalleryUpload(input, id) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
@@ -921,47 +596,6 @@
             document.getElementById('input-' + id).value = '';
         }
 
-        // 动态添加图集项
-        function addGalleryRow(type) {
-            const container = event.target.closest('.card');
-            const gallery = container.querySelector('.gallery');
-            const id = type + '-' + (gallery.querySelectorAll('.gallery-item').length + 1);
-
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.id = 'gallery-' + id;
-            item.innerHTML = `
-                <div class="gallery-placeholder" id="placeholder-${id}">
-                    <div class="g-icon">🖼️</div>
-                    <div class="g-text">点击添加参考图</div>
-                </div>
-                <img id="img-${id}" style="display:none;">
-                <div class="img-actions" id="actions-${id}" style="display:none;">
-                    <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-${id}').click()">
-                        <span>🔄</span>
-                    </button>
-                    <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('${id}')">
-                        <span>🗑️</span>
-                    </button>
-                </div>
-            `;
-
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.id = 'input-' + id;
-            input.accept = 'image/*';
-            input.onchange = function() { handleGalleryUpload(this, id); };
-            input.style.display = 'none';
-
-            gallery.appendChild(item);
-            gallery.appendChild(input);
-
-            item.querySelector('.gallery-placeholder').onclick = function() {
-                document.getElementById('input-' + id).click();
-            };
-        }
-
-        // 初始化：点击占位区域触发上传
         document.querySelectorAll('.gallery-placeholder').forEach(function(el) {
             const id = el.id.replace('placeholder-', '');
             el.onclick = function() {

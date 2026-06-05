@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Home - 装修需求方案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #f5f3f0;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        /* 为了让背景动画在最底层丝滑浮动，需要让容器相对定位并提升层级 */
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+            position: relative;
+            z-index: 1; 
+        }
+
+        .hero {
+            background: #2c2c2c;
+            color: #fff;
+            padding: 60px 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="none" stroke="%23ffffff10" stroke-width="0.5" x="0" y="0" width="100" height="100"/></svg>');
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+        .hero h1 { font-size: 42px; font-weight: 300; letter-spacing: 4px; position: relative; }
+        .hero .subtitle { font-size: 16px; color: #aaa; margin-top: 12px; position: relative; }
+        .hero .date { font-size: 13px; color: #666; margin-top: 20px; position: relative; }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin: 50px 0 20px 0;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #d4a574;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title .num {
+            background: #d4a574;
+            color: #fff;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 700;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .card h3 {
+            font-size: 18px;
+            color: #d4a574;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card h3::before {
+            content: '';
+            width: 4px; height: 20px;
+            background: #d4a574;
+            border-radius: 2px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .info-item {
+            background: #faf8f5;
+            padding: 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .info-item .label { font-size: 12px; color: #999; margin-bottom: 4px; }
+        .info-item .value { font-size: 16px; font-weight: 600; color: #333; transition: color 0.3s ease; }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .tag {
+            background: #f0ede8;
+            color: #666;
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 14px;
+            border: 1px solid #e5e1db;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .tag:hover {
+            background: #e5e1db;
+            color: #2c2c2c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .tag.active {
+            background: #d4a574;
+            color: #fff;
+            border-color: #d4a574;
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(212,165,116,0.3);
+            font-weight: 600;
+        }
+
+        .room-list { margin-top: 16px; }
+        .room-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: #faf8f5;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+        .room-item .room-icon {
+            width: 48px; height: 48px;
+            background: #fff;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .room-item .room-info { flex: 1; }
+        .room-item .room-name { font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+        .room-item .room-desc { font-size: 14px; color: #666; }
+        .room-item .room-note {
+            font-size: 13px;
+            color: #d4a574;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .img-upload-area {
+            position: relative;
+            width: 100%;
+            min-height: 300px;
+            background: #faf8f5;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+        .img-upload-area img { width: 100%; display: block; border-radius: 10px; }
+        .img-upload-area .img-actions {
+            position: absolute; top: 12px; right: 12px;
+            display: flex; gap: 8px; opacity: 0; transition: opacity 0.3s;
+        }
+        .img-upload-area:hover .img-actions { opacity: 1; }
+        .img-upload-area .img-placeholder {
+            width: 100%; min-height: 300px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #bbb; border: 2px dashed #ddd; border-radius: 10px; background: #faf8f5;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;
+            cursor: pointer; border: none; transition: all 0.25s ease; font-family: inherit;
+        }
+        .btn-primary { background: #2c2c2c; color: #fff; }
+        .btn-primary:hover { background: #d4a574; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(212,165,116,0.3); }
+        .btn-outline { background: #fff; color: #666; border: 1px solid #e5e1db; }
+        .btn-outline:hover { border-color: #d4a574; color: #d4a574; background: #fff9f3; }
+        .btn-danger { background: #fff; color: #c45c5c; border: 1px solid #e5e1db; }
+        .btn-danger:hover { background: #fff0f0; border-color: #c45c5c; }
+        .btn-sm { padding: 6px 14px; font-size: 13px; border-radius: 6px; }
+        .btn-center { margin-top: 16px; display: flex; justify-content: center; }
+
+        input[type="file"] { display: none; }
+
+        .gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 16px;
+        }
+        .gallery-item { border-radius: 10px; overflow: hidden; background: #faf8f5; aspect-ratio: 4/3; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 10px; }
+        .gallery-item .gallery-placeholder {
+            width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #bbb; border: 2px dashed #ddd; border-radius: 10px; background: #faf8f5; cursor: pointer;
+        }
+        .gallery-item .img-actions { position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; opacity: 0; transition: opacity 0.3s; }
+        .gallery-item:hover .img-actions { opacity: 1; }
+
+        .note-box {
+            background: #fffbeb; border-left: 4px solid #d4a574; padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; transition: all 0.3s ease;
+        }
+        .note-box .note-title { font-weight: 600; color: #92400e; margin-bottom: 8px; }
+        .note-box .note-text { color: #78350f; font-size: 14px; }
+        .note-box a { color: #d4a574; text-decoration: underline; font-weight: 600; }
+        .note-box a:hover { color: #b28353; }
+
+        .footer { text-align: center; padding: 40px; color: #999; font-size: 13px; margin-top: 40px; }
+
+        .budget-bar { height: 8px; background: #f0ede8; border-radius: 4px; margin-top: 12px; overflow: hidden; }
+        .budget-bar .fill { height: 100%; background: #d4a574; border-radius: 4px; }
+
+        .area-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+        .area-table th, .area-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #f0ede8; }
+        .area-table th { background: #faf8f5; font-weight: 600; color: #666; }
+        .area-table td { color: #555; }
+        .area-table .highlight { color: #d4a574; font-weight: 600; }
+
+        @media print {
+            body { background: #fff; }
+            .card { box-shadow: none; border: 1px solid #eee; }
+            .hero { background: #333; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .btn, .img-actions { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="hero">
+            <h1>OUR HOME</h1>
+            <div class="subtitle">装修需求方案 · 设计风格指南</div>
+            <div class="date">2026年 · 期待中的家</div>
+        </div>
+
+        <!-- 1. 房屋基本信息 -->
+        <div class="section-title">
+            <div class="num">1</div>
+            房屋基本信息
+        </div>
+        <div class="card">
+            <h3>户型概况</h3>
+            
+            <div class="img-upload-area" id="floorplan-area">
+                <img src="floorplan.jpg" alt="户型图" id="floorplan-preview">
+                <div class="img-placeholder" id="floorplan-placeholder" style="display: none;">
+                    <div class="icon">🗺️</div>
+                    <div class="hint">点击上传户型图</div>
+                    <div class="sub-hint">支持 JPG、PNG 格式</div>
+                </div>
+                <div class="img-actions" id="floorplan-actions">
+                    <button class="btn btn-outline btn-sm" onclick="document.getElementById('floorplan-input').click()">
+                        <span>🔄</span> 更换图片
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="removeImage('floorplan')">
+                        <span>🗑️</span> 删除
+                    </button>
+                </div>
+            </div>
+            
+            <input type="file" id="floorplan-input" accept="image/*" onchange="handleImageUpload(this, 'floorplan')">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">套内面积</div>
+                    <div class="value">82.9㎡</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">赠送面积</div>
+                    <div class="value">10.2㎡</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">实得率</div>
+                    <div class="value">93%</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">户型结构</div>
+                    <div class="value">三室两厅两卫</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">房龄 / 状态</div>
+                    <div class="value">毛坯</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">地暖状态</div>
+                    <div class="value">开发商已全屋铺好</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>各空间面积明细</h3>
+            <table class="area-table">
+                <tr><th>空间</th><th>面积</th><th>备注</th></tr>
+                <tr><td>客餐厅</td><td class="highlight">20.8㎡</td><td>空间局促，通过砸掉厨房南墙改为开放式来扩容</td></tr>
+                <tr><td>主卧</td><td class="highlight">15㎡</td><td>空间较大，含飘窗1.3㎡。床头朝西。</td></tr>
+                <tr><td>南次卧</td><td class="highlight">9.7㎡</td><td>改造成儿童房，阳台推拉门爆改折叠窗</td></tr>
+                <tr><td>北次卧</td><td class="highlight">6.1㎡</td><td>暂做基础硬装，不作固定软装定制</td></tr>
+                <tr><td>厨房</td><td>6.4㎡</td><td>砸掉南边墙体，改做U型开放式厨房</td></tr>
+                <tr><td>阳台</td><td>12.8㎡</td><td>空间豪华，可考虑融入客厅</td></tr>
+                <tr><td>主卫</td><td>5.5㎡</td><td>空间较大</td></tr>
+                <tr><td>客卫</td><td>4.9㎡</td><td>空间较大</td></tr>
+                <tr><td>玄关</td><td>4.2㎡</td><td>空间较大</td></tr>
+                <tr><td>走廊</td><td>3.9㎡</td><td>需合理利用</td></tr>
+            </table>
+        </div>
+
+        <!-- 2. 装修风格定位 -->
+        <div class="section-title">
+            <div class="num">2</div>
+            装修风格定位
+        </div>
+        <div class="card">
+            <h3>首选风格</h3>
+            <div class="tags">
+                <span class="tag active" onclick="switchStyle('minimalVintage', this)">极简中古风</span>
+            </div>
+            <div class="note-box" style="margin-top: 20px;">
+                <div class="note-title" id="style-title">💡 极简中古风格描述</div>
+                <div class="note-text" id="style-text">
+                    整体定位为<strong>极简中古风</strong>。硬装保持克制、干净和留白，减少复杂装饰线条，以利落的体块、隐藏式收纳和低饱和背景打底；软装与局部家具引入中古元素，比如胡桃木、皮革、藤编、金属细节和经典弧线造型，让空间在简洁中保留复古质感。希望整体氛围温润、松弛、有年代感，但不过度厚重。
+                </div>
+            </div>
+        </div>
+
+        <!-- 色调与材质偏好 -->
+        <div class="card">
+            <h3>色调与材质偏好</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">主色调</div>
+                    <div class="value" id="pref-main-color">暖白、浅灰、胡桃木色</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">点缀色</div>
+                    <div class="value" id="pref-accent-color">焦糖棕、复古绿、黄铜色</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">地面材质</div>
+                    <div class="value" id="pref-floor-material">浅胡桃木地板 / 微水泥质感砖</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">墙面处理</div>
+                    <div class="value" id="pref-wall-material">暖灰乳胶漆 / 局部木饰面</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 各空间需求 -->
+        <div class="section-title">
+            <div class="num">3</div>
+            各空间装修需求
+        </div>
+        <div class="card">
+            <div class="room-list">
+                <div class="room-item">
+                    <div class="room-icon">🛋️</div>
+                    <div class="room-info">
+                        <div class="room-name">客餐厅（20.8㎡）</div>
+                        <div class="room-desc">与开放式厨房融为一体，大幅增加公共活动视野。</div>
+                        <div class="room-note">【空调需求】客厅确定使用落地式空调。</div>
+                    </div>
+                </div>
+                <div class="room-item">
+                    <div class="room-icon">🍳</div>
+                    <div class="room-info">
+                        <div class="room-name">厨房（6.4㎡ - 开放 U 型）</div>
+                        <div class="room-desc">砸掉厨房南边的整面墙体，完全改造成开放式厨房。</div>
+                        <div class="room-note">【布局优化】内部做动线流利、高利用率的 U 型厨房设计。</div>
+                    </div>
+                </div>
+                <div class="room-item">
+                    <div class="room-icon">🛏️</div>
+                    <div class="room-info">
+                        <div class="room-name">主卧（15㎡ - 朝西布局）</div>
+                        <div class="room-desc">改变传统方向，床头朝西摆放。床尾部分打造无甲醛不锈钢衣柜。</div>
+                        <div class="room-note">【亮点设计】需要木工制作造型将不锈钢衣柜完美包裹进去，外面挂帘子做隐形门。挂壁式空调。</div>
+                    </div>
+                </div>
+                <div class="room-item">
+                    <div class="room-icon">👶</div>
+                    <div class="room-info">
+                        <div class="room-name">南次卧（9.7㎡ - 儿童房）</div>
+                        <div class="room-desc">改造成儿童房，需规划容纳：1米5的床、衣柜以及学习书桌。挂壁式空调。</div>
+                        <div class="room-note">【阳台爆改】次卧阳台推拉门爆改折叠窗，结合储物格与书桌进行一体化组合（参考小红书设计）。</div>
+                    </div>
+                </div>
+                <div class="room-item">
+                    <div class="room-icon">📚</div>
+                    <div class="room-info">
+                        <div class="room-name">北次卧（6.1㎡ - 基础硬装）</div>
+                        <div class="room-desc">现阶段作为留白或多功能空间，挂壁式空调。</div>
+                        <div class="room-note">【硬装限定】施工只需做好地面、墙面、吊顶等基础硬装。后期的柜子、书桌等家具全部由我们自行购买。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 参考图集 -->
+        <div class="section-title">
+            <div class="num">4</div>
+            风格参考图集
+        </div>
+
+        <!-- 客厅参考 -->
+        <div class="card">
+            <h3>三室两卫两厅参考</h3>
+            <div class="gallery" id="reference-gallery"></div>
+        </div>
+
+        <!-- 5. 预算分配 -->
+        <div class="section-title">
+            <div class="num">5</div>
+            预算与整体规划
+        </div>
+        <div class="card">
+            <h3>预算分配（总预算15万）</h3>
+            <div style="margin-top: 16px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>硬装（含拆改、水电、泥木、油漆）</span>
+                    <span style="font-weight: 600;">约 7.5万 / 50%</span>
+                </div>
+                <div class="budget-bar"><div class="fill" style="width: 50%;"></div></div>
+            </div>
+            <div style="margin-top: 16px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>定制家具（主卧造型、儿童房定制等）</span>
+                    <span style="font-weight: 600;">约 3万 / 20%</span>
+                </div>
+                <div class="budget-bar"><div class="fill" style="width: 20%;"></div></div>
+            </div>
+            <div class="note-box" style="margin-top: 24px;">
+                <div class="note-title">💰 预算备注</div>
+                <div class="note-text">由于开发商已经铺设好全屋地暖，地暖部分的工程预算得以省去，可以更加充裕地投入到核心硬装拆改和定制设计中。</div>
+            </div>
+        </div>
+
+        <!-- 6. 特殊需求 -->
+        <div class="section-title">
+            <div class="num">6</div>
+            特殊需求 & 注意事项
+        </div>
+        <div class="card">
+            <h3>核心修改与定制需求（施工队及设计重点）</h3>
+            <ul style="margin-left: 20px; color: #555; line-height: 2.2;">
+                <li><strong>空间拆改（开放式厨房）：</strong> 必须砸掉厨房南边的完整墙体。整体动线设计必须改为标准的 <strong>U 型厨房</strong>，并保持与客餐厅的一体化与通透。</li>
+                <li><strong>暖通设备配置：</strong>
+                    <ul>
+                        <li>全屋共有 3 个房间，全部安装<strong>挂式空调</strong>。</li>
+                        <li>客厅公共区域使用<strong>落地式空调</strong>。</li>
+                        <li>全屋地暖<strong>开发商已全部铺设完毕</strong>，硬装施工时注意地面成品的交叉保护。</li>
+                    </ul>
+                </li>
+                <li><strong>智能家居定位：</strong> 现阶段暂时只需要并只考虑<strong>“灯光”</strong>与<strong>“窗帘”</strong>这两点的智能控制与线路预留，其余智能设备（如新风、背景音乐等）暂时不需要。</li>
+                <li><strong>房间定制与软装分工：</strong>
+                    <ul>
+                        <li><strong>北次卧：</strong> 施工方仅负责做好<strong>最基础的硬装部分</strong>。后期的柜子、书桌等软装家具均由我们后期自行购买，不纳入本次木工或定制范围。</li>
+                        <li><strong>南次卧（儿童房）：</strong> 需设计并摆放一张 <strong>1米5 的床</strong>、衣柜以及独立书桌。</li>
+                        <li><strong>主卧创意（包裹式帘门衣柜）：</strong> 主卧床头方向调整为<strong>朝西摆放</strong>。床尾墙面定制<strong>不锈钢衣柜框架</strong>，需要木工石膏板做一个外凸造型，将整个衣柜完美包裹隐形，外面不装传统柜门，改为<strong>悬挂挂帘</strong>。</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="note-box" style="margin-top: 24px;">
+                <div class="note-title">📌 南次卧（儿童房）空间改造参考</div>
+                <div class="note-text">
+                    次卧阳台推拉门爆改折叠窗 + 储物格 + 书桌一体化方案。<br>
+                    <strong>网络参考链接：</strong>
+                    <a href="http://xhslink.com/o/1vLJn8KcnMb" target="_blank" rel="noopener noreferrer">
+                        点击查看小红书灵感原文方案 (http://xhslink.com/o/1vLJn8KcnMb)
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Our Home 装修需求方案 · 由设计指南驱动</p>
+        </div>
+
+    </div>
+
+    <!-- 神奇粒子线条背景的 Canvas 画布和逻辑嵌入 -->
+    <script>
+        // 创建动态背景的 Canvas 元素
+        const canvas = document.createElement('canvas');
+        document.body.appendChild(canvas);
+        
+        // 样式配置：全屏、固定在底层、允许事件穿透（不影响点击网页内容）
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100vw';
+        canvas.style.height = '100vh';
+        canvas.style.zIndex = '0';
+        canvas.style.pointerEvents = 'none';
+
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        // 响应式：当浏览器缩放时自动重置画布大小
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // 粒子系统基础配置
+        const particleCount = 80; // 粒子密度（80个体验最好，不费电脑）
+        const particles = [];
+        const mouse = { x: null, y: null, max: 20000 }; // 鼠标吸附物理常数
+
+        // 监听鼠标在视口中的滑动与移出
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // 初始化粒子的原始坐标和随机移动速度
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                xa: (Math.random() * 2 - 1) * 0.6, // 水平移速
+                ya: (Math.random() * 2 - 1) * 0.6, // 垂直移速
+                max: 6000 // 粒子与粒子之间发生连线的最大距离平方
+            });
+        }
+
+        // 核心高频渲染动画循环（每秒约60帧渲染）
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // 把鼠标当前坐标作为一个特殊的虚拟粒子放入数组参与运算
+            const allParticles = [mouse].concat(particles);
+
+            particles.forEach((p) => {
+                // 1. 更新粒子坐标使其漂移
+                p.x += p.xa;
+                p.y += p.ya;
+
+                // 2. 边缘碰撞检测：碰到屏幕边缘就反弹
+                if (p.x > width || p.x < 0) p.xa *= -1;
+                if (p.y > height || p.y < 0) p.ya *= -1;
+
+                // 3. 在当前位置绘制一个极其微小的半透明淡雅粒子点
+                ctx.fillStyle = 'rgba(212, 165, 116, 0.25)'; // 提取了你网页的主色调金咖色
+                ctx.fillRect(p.x - 0.5, p.y - 0.5, 1.5, 1.5);
+
+                // 4. 嵌套循环：计算当前粒子与系统中其他所有粒子（包括鼠标）的距离
+                for (let i = 0; i < allParticles.length; i++) {
+                    const d2 = allParticles[i];
+
+                    if (p === d2 || d2.x === null || d2.y === null) continue;
+
+                    const xc = p.x - d2.x;
+                    const yc = p.y - d2.y;
+                    const dis = xc * xc + yc * yc; // 勾股定理计算物理距离平方
+
+                    // 如果距离小于设定的阈值，就进行连线
+                    if (dis < d2.max) {
+                        // 如果当前比对的是鼠标，且粒子距离鼠标较近，则产生向鼠标方向靠拢的“引力”
+                        if (d2 === mouse && dis >= d2.max / 2) {
+                            p.x -= xc * 0.015;
+                            p.y -= yc * 0.015;
+                        }
+
+                        // 计算线段的粗细和透明度：距离越近，线条越明显
+                        const ratio = (d2.max - dis) / d2.max;
+                        ctx.beginPath();
+                        ctx.lineWidth = ratio / 2;
+                        // 使用契合原网页的高雅米咖色作为连线颜色，并且高透明度，不影响文字阅读
+                        ctx.strokeStyle = `rgba(212, 165, 116, ${ratio * 0.18})`;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(d2.x, d2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+
+            requestAnimationFrame(animate); // 递归调用，保证动画无限丝滑延续
+        }
+
+        // 启动动画
+        animate();
+    </script>
+
+    <script>
+        // 保持风格展示和图片处理脚本的逻辑完备性
+        const styleData = {
+            minimalVintage: {
+                title: "💡 极简中古风格描述",
+                text: "整体定位为<strong>极简中古风</strong>。硬装保持克制、干净和留白，减少复杂装饰线条，以利落的体块、隐藏式收纳和低饱和背景打底；软装与局部家具引入中古元素，比如胡桃木、皮革、藤编、金属细节和经典弧线造型，让空间在简洁中保留复古质感。希望整体氛围温润、松弛、有年代感，但不过度厚重。",
+                mainColor: "暖白、浅灰、胡桃木色",
+                accentColor: "焦糖棕、复古绿、黄铜色",
+                floor: "浅胡桃木地板 / 微水泥质感砖",
+                wall: "暖灰乳胶漆 / 局部木饰面"
+            }
+        };
+
+        const storagePrefix = 'ourhome-image-';
+        const galleryItems = [
+            { id: 'living', label: '客厅整体效果图' },
+            { id: 'dining', label: '餐厅参考' },
+            { id: 'kitchen', label: 'U型开放式厨房参考' },
+            { id: 'master-bedroom', label: '主卧参考' },
+            { id: 'south-bedroom', label: '南次卧儿童房参考' },
+            { id: 'north-bedroom', label: '北次卧参考' },
+            { id: 'master-bath', label: '主卫参考' },
+            { id: 'guest-bath', label: '公卫参考' }
+        ];
+
+        function storageKey(id) {
+            return storagePrefix + id;
+        }
+
+        function saveImage(id, value) {
+            try {
+                localStorage.setItem(storageKey(id), value);
+            } catch (error) {
+                console.warn('图片过大，无法保存到浏览器本地存储。', error);
+            }
+        }
+
+        function removeSavedImage(id) {
+            localStorage.removeItem(storageKey(id));
+        }
+
+        function getSavedImage(id) {
+            return localStorage.getItem(storageKey(id));
+        }
+
+        function showImage(id, src) {
+            document.getElementById('img-' + id).src = src;
+            document.getElementById('img-' + id).style.display = 'block';
+            document.getElementById('placeholder-' + id).style.display = 'none';
+            document.getElementById('actions-' + id).style.display = 'flex';
+        }
+
+        function hideImage(id) {
+            document.getElementById('img-' + id).src = '';
+            document.getElementById('img-' + id).style.display = 'none';
+            document.getElementById('placeholder-' + id).style.display = 'flex';
+            document.getElementById('actions-' + id).style.display = 'none';
+            document.getElementById('input-' + id).value = '';
+        }
+
+        function renderGallery() {
+            const gallery = document.getElementById('reference-gallery');
+            if (!gallery) return;
+
+            gallery.innerHTML = galleryItems.map(function(item) {
+                return `
+                    <div class="gallery-item" id="gallery-${item.id}">
+                        <div class="gallery-placeholder" id="placeholder-${item.id}" data-gallery-id="${item.id}">
+                            <div class="g-icon">🖼️</div>
+                            <div class="g-text">${item.label}</div>
+                        </div>
+                        <img id="img-${item.id}" alt="${item.label}" style="display:none;">
+                        <div class="img-actions" id="actions-${item.id}" style="display:none;">
+                            <button class="btn btn-outline btn-sm" type="button" data-replace-id="${item.id}">🔄</button>
+                            <button class="btn btn-danger btn-sm" type="button" data-remove-id="${item.id}">🗑️</button>
+                        </div>
+                    </div>
+                    <input type="file" id="input-${item.id}" accept="image/*" data-input-id="${item.id}">
+                `;
+            }).join('');
+
+            gallery.querySelectorAll('[data-gallery-id]').forEach(function(el) {
+                el.addEventListener('click', function() {
+                    document.getElementById('input-' + el.dataset.galleryId).click();
+                });
+            });
+
+            gallery.querySelectorAll('[data-replace-id]').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    document.getElementById('input-' + button.dataset.replaceId).click();
+                });
+            });
+
+            gallery.querySelectorAll('[data-remove-id]').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    removeGalleryImage(button.dataset.removeId);
+                });
+            });
+
+            gallery.querySelectorAll('[data-input-id]').forEach(function(input) {
+                input.addEventListener('change', function() {
+                    handleGalleryUpload(input, input.dataset.inputId);
+                });
+            });
+
+            galleryItems.forEach(function(item) {
+                const savedImage = getSavedImage(item.id);
+                if (savedImage) showImage(item.id, savedImage);
+            });
+        }
+
+        function switchStyle(styleKey, element) {
+            document.querySelectorAll('.tag').forEach(tag => tag.classList.remove('active'));
+            element.classList.add('active');
+            
+            const titleEl = document.getElementById('style-title');
+            const textEl = document.getElementById('style-text');
+            const mainColorEl = document.getElementById('pref-main-color');
+            const accentColorEl = document.getElementById('pref-accent-color');
+            const floorEl = document.getElementById('pref-floor-material');
+            const wallEl = document.getElementById('pref-wall-material');
+            
+            if (styleData[styleKey]) {
+                titleEl.innerHTML = styleData[styleKey].title;
+                textEl.innerHTML = styleData[styleKey].text;
+                mainColorEl.innerText = styleData[styleKey].mainColor;
+                accentColorEl.innerText = styleData[styleKey].accentColor;
+                floorEl.innerText = styleData[styleKey].floor;
+                wallEl.innerText = styleData[styleKey].wall;
+            }
+        }
+
+        function handleImageUpload(input, type) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(type + '-preview').src = e.target.result;
+                    document.getElementById(type + '-preview').style.display = 'block';
+                    document.getElementById(type + '-placeholder').style.display = 'none';
+                    document.getElementById(type + '-actions').style.display = 'flex';
+                    saveImage(type, e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeImage(type) {
+            document.getElementById(type + '-preview').src = '';
+            document.getElementById(type + '-preview').style.display = 'none';
+            document.getElementById(type + '-placeholder').style.display = 'flex';
+            document.getElementById(type + '-actions').style.display = 'none';
+            document.getElementById(type + '-input').value = '';
+            removeSavedImage(type);
+        }
+
+        function handleGalleryUpload(input, id) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    showImage(id, e.target.result);
+                    saveImage(id, e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeGalleryImage(id) {
+            hideImage(id);
+            removeSavedImage(id);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderGallery();
+
+            const savedFloorplan = getSavedImage('floorplan');
+            if (savedFloorplan) {
+                document.getElementById('floorplan-preview').src = savedFloorplan;
+                document.getElementById('floorplan-preview').style.display = 'block';
+                document.getElementById('floorplan-placeholder').style.display = 'none';
+                document.getElementById('floorplan-actions').style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
